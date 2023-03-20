@@ -42,7 +42,64 @@ public class AddAccountController extends HttpServlet {
             RegisterUserErrorDTO userInput = new RegisterUserErrorDTO(userID, fullName,
                     address, birthday, phoneNumber, email);
 
-            
+            if (!dao.isDeleted(userID)) {
+                if (!dao.checkUserExisted(userID)) {
+                    if (!Validation.isValidUserID(userID)) {
+                        foundError = true;
+                        userError.setUserID("User ID requires 8 characters or invalid user ID pattern");
+                        LOGGER.error(userError.getUserID());
+                    }
+                    if (fullName.trim().length() < 2 || fullName.trim().length() > 30) {
+                        foundError = true;
+                        userError.setFullName("Full Name requires 2 to 30 characters");
+                        LOGGER.error(userError.getFullName());
+                    }
+                    if (!password.equals(confirmPassword)) {
+                        foundError = true;
+                        userError.setConfirmPassword("Please confirm your password!");
+                        LOGGER.error(userError.getConfirmPassword());
+                    }
+                    if (address == null || address.equals("")) {
+                        foundError = true;
+                        userError.setAddress("Invalid address!");
+                        LOGGER.error(userError.getAddress());
+                    }
+                    if (birthday == null) {
+                        foundError = true;
+                        userError.setErrorMessage("Invalid Date of Birth");
+                        LOGGER.error(userError.getBirthday());
+                    }
+                    if (!phoneNumber.isEmpty()) {
+                        if (!Validation.isValidPhoneNumber(phoneNumber.trim())) {
+                            foundError = true;
+                            userError.setPhoneNumber("Phone number requires 10 numbers");
+                            LOGGER.error(userError.getPhoneNumber());
+                        }
+                    }
+                    if (!Validation.isValidEmail(email.toLowerCase().trim())) {
+                        foundError = true;
+                        userError.setEmail("Invalid email pattern");
+                        LOGGER.error(userError.getEmail());
+                    }
+                    if (foundError) {
+                        request.setAttribute("USER_ERROR", userError);
+                        request.setAttribute("USER_INFO", userInput);
+                        LOGGER.info("Registered unsuccessfully");
+                    } else {
+                        boolean checkRegister = dao.createUser(new UserDTO(userID, fullName, roleID, password,
+                                address, birthday, phoneNumber, email, false));
+                        if (checkRegister) {
+                            url = SUCCESS;
+                            request.setAttribute("STATUS", "success");
+                            LOGGER.info("Registered successfully");
+                        }
+                    }
+                } else {
+                    request.setAttribute("DUPLICATE", "User ID has existed!");
+                }
+            } else {
+                request.setAttribute("DELETED_USER", "This user ID had been deleted. Contact us for more infomation!");
+            }
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
