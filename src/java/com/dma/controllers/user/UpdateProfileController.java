@@ -39,7 +39,45 @@ public class UpdateProfileController extends HttpServlet {
             String phoneNumber = request.getParameter("phoneNumber");
             String email = request.getParameter("email");
 
-            
+            if (fullName.trim().length() < 2 || fullName.trim().length() > 30) {
+                foundError = true;
+                userError.setFullName("Full Name requires 2 to 30 characters");
+                LOGGER.error(userError.getFullName());
+            }
+            if (address == null || address.equals("")) {
+                foundError = true;
+                userError.setAddress("Invalid address!");
+                LOGGER.error(userError.getAddress());
+            }
+            if (birthday == null) {
+                foundError = true;
+                userError.setErrorMessage("Invalid Date of Birth");
+                LOGGER.error(userError.getBirthday());
+            }
+            if (!phoneNumber.isEmpty()) {
+                if (!Validation.isValidPhoneNumber(phoneNumber.trim())) {
+                    foundError = true;
+                    userError.setPhoneNumber("Phone number requires 10 numbers");
+                    LOGGER.error(userError.getPhoneNumber());
+                }
+            }
+            if (!Validation.isValidEmail(email.toLowerCase().trim())) {
+                foundError = true;
+                userError.setEmail("Invalid email pattern");
+                LOGGER.error(userError.getEmail());
+            }
+            if (foundError) {
+                request.setAttribute("USER_ERROR", userError);
+                LOGGER.info("Updated unsuccessfully");
+            } else {
+                boolean check = dao.updateUser(new UserDTO(userID, fullName, roleID, password,
+                        address, birthday, phoneNumber, email, false));
+                if (check) {
+                    url = SUCCESS;
+                    request.setAttribute("STATUS", "success");
+                    LOGGER.info("Updated successfully");
+                }
+            }
         } catch (Exception e) {
             LOGGER.error(e);
         } finally {
