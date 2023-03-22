@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Test</title>
+    <style>
+        #contextMenu {
+            position: fixed;
+            background: teal;
+            color: white;
+            cursor: pointer;
+            border: 1px black solid
+        }
+
+        #contextMenu>p {
+            padding: 0 1rem;
+            margin: 0
+        }
+
+        #contextMenu>p:hover {
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        oncontextmenu = (e) => {
+            e.preventDefault()
+            var menu = document.createElement("div")
+            menu.id = "contextMenu"
+            menu.style = `top:${e.pageY - 10}px;left:${e.pageX - 40}px`
+            menu.onmouseleave = () => contextMenu.outerHTML = ''
+            menu.innerHTML = "<p onclick='alert(`1 It is!`)'>Choose 1</p><p onclick='alert(`2 It is!`)'>Choose 2</p><p onclick='alert(`3 It is!`)'>Choose 3</p><p onclick='alert(`Thank you!`)'>No thanks</p>"
+            document.body.appendChild(menu)
+        }
+    </script>
+</body>
+
+</html>

@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SWD391-FinalProject/web/index.jsp</file>
+            <file>file:/D:/SWD391-FinalProject/web/META-INF/context.xml</file>
+            <file>file:/D:/SWD391-FinalProject/src/java/com/dma/listener/ContextListener.java</file>
+            <file>file:/D:/SWD391-FinalProject/src/java/com/dma/controllers/UserHomeController.java</file>
+            <file>file:/D:/SWD391-FinalProject/nbproject/build-impl.xml</file>
         </group>
     </open-files>
 </project-private>

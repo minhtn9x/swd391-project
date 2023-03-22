@@ -1,0 +1,677 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Home</title>
+
+        <!-- Custom fonts for this template-->
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+        <!-- Custom styles for this template-->
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="https://fontawesome.com/icons/angle-down?s=thin" rel="stylesheet">
+        <style>
+            .dropbtn {
+                background-color: #4CAF50;
+                color: white;
+                height: 30px;
+                width: 30px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown-content a:hover {
+                background-color: #f1f1f1
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #3e8e41;
+            }
+
+            #contextMenu {
+                position: fixed;
+                background: teal;
+                color: white;
+                cursor: pointer;
+                border: 1px black solid
+            }
+
+            #contextMenu>p {
+                padding: 0 1rem;
+                margin: 0
+            }
+
+            #contextMenu>p:hover {
+                background: black;
+                color: white;
+            }
+        </style>
+
+    </head>
+
+    <body id="page-top">
+
+        <c:set var="user" value="${sessionScope.LOGIN_USER}"></c:set>
+
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fas fa-laugh-wink"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">DMA</div>
+                </a>
+
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home.html">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fa-regular fa-plus"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">New</div>
+                </a>
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+                <!-- Nav Item - Pages Collapse Menu -->
+                <div class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>My Document</span>
+                    </a>
+                </div>
+
+                <div class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Group share</span>
+                    </a>
+                </div>
+
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+                <div class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Recent </span>
+                    </a>
+                </div>
+
+                <div class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Share with me</span>
+                    </a>
+                </div>
+
+                <div class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Favorite </span>
+                    </a>
+
+                </div>
+
+                <div class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Bin</span>
+                    </a>
+                </div>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
+                <div class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Feedback</span>
+                    </a>
+                </div>
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
+
+            </ul>
+            <!-- End of Sidebar -->
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <!-- Topbar -->
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                        <!-- Sidebar Toggle (Topbar) -->
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+
+                        <!-- Topbar Search -->
+                        <form
+                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light border-0 small"
+                                    placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto">
+                            <div class="topbar-divider d-none d-sm-block"></div>
+
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span
+                                        class="mr-2 d-none d-lg-inline text-gray-600 small">${LOGIN_USER.getFullName()}</span>
+                                    <img class="img-profile rounded-circle"
+                                        src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="profile.jsp">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Profile
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Settings
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Activity Log
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+                    <!-- End of Topbar -->
+
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+
+                        <!-- Page Heading -->
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <h1 class="h3 mb-4 text-gray-800">Project</h1>
+                            </div>
+                            <div class="col-lg-6">
+
+                            </div>
+                            <div class="col-lg-2">
+                                <a href="ViewProjectController"><button type="button" class="btn btn-primary">Project
+                                        List</button></a>
+                            </div>
+                        </div>
+                        <h1 class="h3 mb-4 text-gray-800">My document</h1>
+                        <h2 class="h3 mb-4 text-gray-800">Folder</h2>
+
+                        <div class="row">
+                            <div class="col-lg-2" style="border-style: solid;padding: 20px; margin: 20px;">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <a href="#">
+                                            <span>Folder 1</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="dropdown">
+                                            <button class="dropbtn">
+                                                <i class="fa-thin fa-angle-down"></i>
+                                            </button>
+                                            <div class="dropdown-content">
+                                                <a href="#">View folder</a>
+                                                <a href="#">Delete folder</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="border-style: solid;padding: 20px; margin: 20px;">
+                                <a href="#">
+                                    <span>Folder 1</span>
+                                </a>
+                            </div>
+                            <div class="col-lg-2" style="border-style: solid;padding: 20px; margin: 20px;">
+                                <a href="#">
+                                    <span>Folder 1</span>
+                                </a>
+                            </div>
+                            <div class="col-lg-2" style="border-style: solid;padding: 20px; margin: 20px;">
+                                <a href="#">
+                                    <span>Folder 1</span>
+                                </a>
+                            </div>
+                            <div class="col-lg-2" style="border-style: solid;padding: 20px; margin: 20px;">
+                                <a href="#">
+                                    <span>Folder 1</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2" style="border-style: solid;padding: 20px; margin: 20px;">
+                                <a href="#">
+                                    <span>Folder 1</span>
+                                </a>
+                            </div>
+                            <div class="col-lg-2" style="border-style: solid;padding: 20px; margin: 20px;">
+                                <a href="#">
+                                    <span>Folder 1</span>
+                                </a>
+                            </div>
+                            <div class="col-lg-2" style="border-style: solid;padding: 20px; margin: 20px;">
+                                <a href="#">
+                                    <span>Folder 1</span>
+                                </a>
+                            </div>
+                            <div class="col-lg-2" style="border-style: solid;padding: 20px; margin: 20px;">
+                                <a href="#">
+                                    <span>Folder 1</span>
+                                </a>
+                            </div>
+                            <div class="col-lg-2" style="border-style: solid;padding: 20px; margin: 20px;">
+                                <a href="#">
+                                    <span>Folder 1</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <h2 class="h3 mb-4 text-gray-800">File</h2>
+                        <!-- Table -->
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Modified</th>
+                                        <th>Size</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>a</td>
+                                        <td>a</td>
+                                        <td>a</td>
+                                    </tr>
+                                    <tr>
+                                        <td>a</td>
+                                        <td>a</td>
+                                        <td>a</td>
+                                    </tr>
+                                    <tr>
+                                        <td>a</td>
+                                        <td>a</td>
+                                        <td>a</td>
+                                    </tr>
+                                    <tr>
+                                        <td>a</td>
+                                        <td>a</td>
+                                        <td>a</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">?</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="MainController?action=Logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
+        <script>
+            (function () {
+
+                "use strict";
+
+                //////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////
+                //
+                // H E L P E R    F U N C T I O N S
+                //
+                //////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////
+
+                /**
+                 * Function to check if we clicked inside an element with a particular class
+                 * name.
+                 * 
+                 * @param {Object} e The event
+                 * @param {String} className The class name to check against
+                 * @return {Boolean}
+                 */
+                function clickInsideElement(e, className) {
+                    var el = e.srcElement || e.target;
+
+                    if (el.classList.contains(className)) {
+                        return el;
+                    } else {
+                        while (el = el.parentNode) {
+                            if (el.classList && el.classList.contains(className)) {
+                                return el;
+                            }
+                        }
+                    }
+
+                    return false;
+                }
+
+                /**
+                 * Get's exact position of event.
+                 * 
+                 * @param {Object} e The event passed in
+                 * @return {Object} Returns the x and y position
+                 */
+                function getPosition(e) {
+                    var posx = 0;
+                    var posy = 0;
+
+                    if (!e) var e = window.event;
+
+                    if (e.pageX || e.pageY) {
+                        posx = e.pageX;
+                        posy = e.pageY;
+                    } else if (e.clientX || e.clientY) {
+                        posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+                        posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+                    }
+
+                    return {
+                        x: posx,
+                        y: posy
+                    }
+                }
+
+                //////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////
+                //
+                // C O R E    F U N C T I O N S
+                //
+                //////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////
+
+                /**
+                 * Variables.
+                 */
+                var contextMenuClassName = "context-menu";
+                var contextMenuItemClassName = "context-menu__item";
+                var contextMenuLinkClassName = "context-menu__link";
+                var contextMenuActive = "context-menu--active";
+
+                var taskItemClassName = "task";
+                var taskItemInContext;
+
+                var clickCoords;
+                var clickCoordsX;
+                var clickCoordsY;
+
+                var menu = document.querySelector("#context-menu");
+                var menuItems = menu.querySelectorAll(".context-menu__item");
+                var menuState = 0;
+                var menuWidth;
+                var menuHeight;
+                var menuPosition;
+                var menuPositionX;
+                var menuPositionY;
+
+                var windowWidth;
+                var windowHeight;
+
+                /**
+                 * Initialise our application's code.
+                 */
+                function init() {
+                    contextListener();
+                    clickListener();
+                    keyupListener();
+                    resizeListener();
+                }
+
+                /**
+                 * Listens for contextmenu events.
+                 */
+                function contextListener() {
+                    document.addEventListener("contextmenu", function (e) {
+                        taskItemInContext = clickInsideElement(e, taskItemClassName);
+
+                        if (taskItemInContext) {
+                            e.preventDefault();
+                            toggleMenuOn();
+                            positionMenu(e);
+                        } else {
+                            taskItemInContext = null;
+                            toggleMenuOff();
+                        }
+                    });
+                }
+
+                /**
+                 * Listens for click events.
+                 */
+                function clickListener() {
+                    document.addEventListener("click", function (e) {
+                        var clickeElIsLink = clickInsideElement(e, contextMenuLinkClassName);
+
+                        if (clickeElIsLink) {
+                            e.preventDefault();
+                            menuItemListener(clickeElIsLink);
+                        } else {
+                            var button = e.which || e.button;
+                            if (button === 1) {
+                                toggleMenuOff();
+                            }
+                        }
+                    });
+                }
+
+                /**
+                 * Listens for keyup events.
+                 */
+                function keyupListener() {
+                    window.onkeyup = function (e) {
+                        if (e.keyCode === 27) {
+                            toggleMenuOff();
+                        }
+                    }
+                }
+
+                /**
+                 * Window resize event listener
+                 */
+                function resizeListener() {
+                    window.onresize = function (e) {
+                        toggleMenuOff();
+                    };
+                }
+
+                /**
+                 * Turns the custom context menu on.
+                 */
+                function toggleMenuOn() {
+                    if (menuState !== 1) {
+                        menuState = 1;
+                        menu.classList.add(contextMenuActive);
+                    }
+                }
+
+                /**
+                 * Turns the custom context menu off.
+                 */
+                function toggleMenuOff() {
+                    if (menuState !== 0) {
+                        menuState = 0;
+                        menu.classList.remove(contextMenuActive);
+                    }
+                }
+
+                /**
+                 * Positions the menu properly.
+                 * 
+                 * @param {Object} e The event
+                 */
+                function positionMenu(e) {
+                    clickCoords = getPosition(e);
+                    clickCoordsX = clickCoords.x;
+                    clickCoordsY = clickCoords.y;
+
+                    menuWidth = menu.offsetWidth + 4;
+                    menuHeight = menu.offsetHeight + 4;
+
+                    windowWidth = window.innerWidth;
+                    windowHeight = window.innerHeight;
+
+                    if ((windowWidth - clickCoordsX) < menuWidth) {
+                        menu.style.left = windowWidth - menuWidth + "px";
+                    } else {
+                        menu.style.left = clickCoordsX + "px";
+                    }
+
+                    if ((windowHeight - clickCoordsY) < menuHeight) {
+                        menu.style.top = windowHeight - menuHeight + "px";
+                    } else {
+                        menu.style.top = clickCoordsY + "px";
+                    }
+                }
+
+                /**
+                 * Dummy action function that logs an action when a menu item link is clicked
+                 * 
+                 * @param {HTMLElement} link The link that was clicked
+                 */
+                function menuItemListener(link) {
+                    console.log("Task ID - " + taskItemInContext.getAttribute("data-id") + ", Task action - " + link.getAttribute("data-action"));
+                    toggleMenuOff();
+                }
+
+                /**
+                 * Run the app.
+                 */
+                init();
+
+            })();
+
+
+
+        </script>
+
+        <script>
+            oncontextmenu = (e) => {
+                e.preventDefault()
+                var menu = document.createElement("div")
+                menu.id = "contextMenu"
+                menu.style = `top:${e.pageY - 10}px;left:${e.pageX - 40}px`
+                menu.onmouseleave = () => contextMenu.outerHTML = ''
+                menu.innerHTML = "<p onclick='alert(`1 It is!`)'>Choose 1</p><p onclick='alert(`2 It is!`)'>Choose 2</p><p onclick='alert(`3 It is!`)'>Choose 3</p><p onclick='alert(`Thank you!`)'>No thanks</p>"
+                document.body.appendChild(menu)
+            }
+        </script>
+
+    </body>
+
+    </html>
